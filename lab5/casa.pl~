@@ -1,0 +1,49 @@
+solucio(L):-
+    L = [ [1,_,_,_,_,_],[2,_,_,_,_,_],[3,_,_,_,_,_],[4,_,_,_,_,_],[5,_,_,_,_,_]], 
+    %casa, color, prof, animal, bebidas, nacionalidad
+
+    %1 - El que vive en la casa roja es de Perú
+    member([_,roja,_,_,_,perú], L),
+    %2 - Al francés le gusta el perro
+	member([_,_,_,_,_,francia],L),
+	%3 - El pintor es japonés
+	member([_,_,pintor,_,_,japon],L),
+	%4 - Al chino le gusta el ron
+	member([_,_,_,_,ron,china],L),
+	%5 - El húngaro vive en la primera casa
+	member([1,_,_,_,_,hungria],L),
+	%6 - Al de la casa verde le gusta el coñac
+	member([N1,verde,_,_,coñac,_],L),
+	%7 - La casa verde está justo a la izquierda de la blanca
+	between(1,5,N2),
+	N2 is N1+1,
+	member([N2,blanca,_,_,_,_],L),
+	%8 - El escultor crı́a caracoles
+	member([_,_,escultor,caracoles,_,_],L),
+	%9 - El de la casa amarilla es actor	member([],L),
+	member([M1,amarilla,actor,_,_,_],L),
+	%10 - El de la tercera casa bebe cava
+	member([3,_,_,_,cava,_],L),
+	%11 - El que vive al lado del actor tiene un caballo
+	alLado(M1,M2),
+	member([M2,_,_,caballo,_,_],L),
+	%12 - El húngaro vive al lado de la casa azul
+	member([2,azul,_,_,_,_],L),
+	%13 - Al notario la gusta el whisky
+	member([_,_,notario,_,whisky,_],L),
+	%14 - El que vive al lado del médico tiene un ardilla,
+	member([O1,_,medico,_,_,_], L),
+	member([O2,_,_,ardilla,_,_],L),
+	alLado(O1,O2),
+    displaSol(L),
+    fail.
+
+alLado(C1, C2):- 
+	between(1,5,C1),
+	between(1,5,C2),
+	X1 is C1+1, X2 is C1-1,
+	member(C2, [X1, X2]).
+	
+displaySol(L):- member(P,L), write(P), nl, fail.
+displaySol(_).
+

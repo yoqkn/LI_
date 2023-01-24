@@ -1,0 +1,6 @@
+1. p & -p insatisfactible
+2. p v -p tautología
+3. FvG tautologia ssi F tauto o G tauto FALS (p v -p)
+4. F tauto ssi -F insat
+5. G |= F ssi G & - F insat
+
